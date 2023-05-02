@@ -1,7 +1,7 @@
 const express = require('express');
 const { faker } = require('@faker-js/faker');
 
-const router = express.Router()
+const router = express.Router();
 
 router.get('/categories/:categoryId/products/:productsId', (req, res) => {
   const { categoryId, productsId } = req.params;
@@ -11,33 +11,37 @@ router.get('/categories/:categoryId/products/:productsId', (req, res) => {
   });
 });
 
-
 router.post('/', (res, req) => {
-  const body = require.body
-  res.json({
-    message: "create",
-    data: body
-  })
-})
+  const body = require.body;
+  res.status(201).json({
+    message: 'create',
+    data: body,
+  });
+});
 
 router.patch('/:id', (res, req) => {
-  const body = require.body
-  const { id } = require.params
-  res.json
-    ({
-      message: "update",
-      data: body
-    })
-})
+  const body = require.body;
+  const { id } = require.params;
+
+  if (id === 999) {
+    res.status(404).json({
+      message: 'dont found',
+    });
+  } else {
+    res.json({
+      message: 'update',
+      data: body,
+    });
+  }
+});
 
 router.delete('/:id', (res, req) => {
-  const { id } = require.params
-  const body = require.body
+  const { id } = require.params;
+  const body = require.body;
 
   res.json({
-    message: "deleted",
-    data: body
-  })
-})
-module.exports = router
-
+    message: 'deleted',
+    data: body,
+  });
+});
+module.exports = router;
