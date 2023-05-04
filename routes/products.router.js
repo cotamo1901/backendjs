@@ -7,14 +7,13 @@ const service = new Prodctservice();
 
 router.get('/', (req, res) => {
   const products = service.find();
-
   res.json([products]);
 });
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   const product = service.findOne(id);
-  res.json(product)
+  res.json(product);
 });
 
 router.post('/', (req, res) => {
